@@ -18,8 +18,8 @@ Allows a new author to register by providing a unique name and password. The pas
 **Payload:**
  ```json
     {
-        "username": "janedoe",
-        "password": "securepassword123"
+        "username": "kjworling",
+        "password": "qwerty"
     }
 ```
 
@@ -28,16 +28,15 @@ Allows a new author to register by providing a unique name and password. The pas
         ```json
               {
                   "status": "success",
-                  "token": "<TOKEN>",
                   "data": null
               }
           ```    
     -  **Failed**
         ```json  
               {
-                  "status": "fail",
+                  "status": "failed",
                   "data": {
-                      "title": "Authentication Failed!"
+                      "title": "Name already exists"
                   }
               }
           ```
@@ -55,8 +54,8 @@ Authenticates an author by validating the provided username and password. If val
 **Payload:**
  ```json
     {
-        "username": "janedoe",
-        "password": "securepassword123"
+        "username": "kjworling",
+        "password": "qwerty"
     }
 ```
 
@@ -64,18 +63,16 @@ Authenticates an author by validating the provided username and password. If val
      - **Success**
         ```json
               {
-                  "status": "success",
-                  "token": "<TOKEN>",
-                  "data": null
-              }
+                 "status": "success",
+                 "login_token": "secret",
+                 "data": "Access granted"
+             }
           ```    
     -  **Failed**
         ```json  
               {
-                  "status": "fail",
-                  "data": {
-                      "title": "Authentication Failed!"
-                  }
+                  "status": "failed",
+                  "message": "Login failed: Invalid username or password"
               }
           ```
 #
@@ -92,8 +89,45 @@ Validates an author’s credentials and generates a JWT token for authentication
 **Payload:**
  ```json
     {
-        "username": "janedoe",
-        "password": "securepassword123"
+        "username": "kjworling",
+        "password": "qwerty"
+    }
+```
+
+- **Response:**
+     - **Success**
+        ```json
+              {
+                 "status": "success",
+                 "token": "secret",
+                 "data": null
+             }
+          ```    
+    -  **Failed**
+        ```json  
+              {
+                  "status": "failed",
+                  "data": {
+                      "title": "auth failed"
+                  }
+              }
+          ```
+
+#
+
+#### *Create Book*
+
+Endpoint: `/book/create`
+
+Method: `POST`
+
+Description:
+Allows an authenticated author to create a new book and associate it with their account. The token is blacklisted after use.
+
+**Payload:**
+ ```json
+    {
+    "title": "Parry Hotter"
     }
 ```
 
@@ -102,16 +136,121 @@ Validates an author’s credentials and generates a JWT token for authentication
         ```json
               {
                   "status": "success",
-                  "token": "<TOKEN>",
                   "data": null
               }
           ```    
     -  **Failed**
         ```json  
               {
-                  "status": "fail",
-                  "data": {
-                      "title": "Authentication Failed!"
-                  }
+                  "status": "failed",
+                  "message": "Unauthorized: No token provided"
               }
+          ```
+
+#
+
+#### *Edit Book*
+
+Endpoint: `/book/edit`
+
+Method: `POST`
+
+Description:
+Allows an authenticated author to update the title of their book. The token is blacklisted after use.
+
+**Payload:**
+ ```json
+    {
+    "bookid": 123,
+    "title": "Henry Potha"
+    }
+```
+
+- **Response:**
+     - **Success**
+        ```json
+              {
+                  "status": "success",
+                  "message": "Book updated successfully"
+              }
+          ```    
+    -  **Failed**
+        ```json  
+             {
+                 "status": "failed",
+                 "message": "Unauthorized: No token provided"
+             }
+          ```
+
+#
+
+#### *Delete Book*
+
+Endpoint: `/book/delete`
+
+Method: `POST`
+
+Description:
+Allows an authenticated author to delete one of their books. The token is blacklisted after use.
+
+**Payload:**
+ ```json
+    {
+    "bookid": 123
+    }
+```
+
+- **Response:**
+     - **Success**
+        ```json
+              {
+                  "status": "success",
+                  "message": "Book deleted successfully"
+              }
+          ```    
+    -  **Failed**
+        ```json  
+             {
+                "status": "failed",
+                "message": "Unauthorized: No token provided"
+            }
+          ```
+
+#
+
+#### *View Book*
+
+Endpoint: `/author/books`
+
+Method: `GET`
+
+Description:
+Retrieves all books created by the authenticated author. The token is blacklisted after use.
+
+
+- **Response:**
+     - **Success**
+        ```json
+              {
+                "status": "success",
+                "data": [
+                    {
+                        "bookid": 123,
+                        "title": "Book Title",
+                        "author_name": "Author Name"
+                    },
+                    {
+                        "bookid": 124,
+                        "title": "Another Book",
+                        "author_name": "Author Name"
+                    }
+                ]
+            }
+          ```    
+    -  **Failed**
+        ```json  
+             {
+                 "status": "failed",
+                 "message": "Unauthorized: No token provided"
+             }
           ```

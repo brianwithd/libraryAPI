@@ -20,8 +20,7 @@ Allows a new author to register by providing a unique name and password. The pas
             "password": "securepassword123"
           }
       ```
-  - **Response:**
-      - **On Success**
+ 
           ```json
               {
                   "status": "success",
@@ -29,7 +28,7 @@ Allows a new author to register by providing a unique name and password. The pas
                   "data": null
               }
           ```
-      - **On Failure (Authenthication Failed):**
+     
           ```json
               {
                   "status": "fail",

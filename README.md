@@ -15,7 +15,7 @@ Method: `POST`
 Description:
 Allows a new author to register by providing a unique name and password. The password is securely hashed using SHA256 before being stored in the database.
 
-**Payload**
+**Payload:**
  ```json
     {
         "username": "janedoe",

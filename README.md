@@ -29,7 +29,7 @@ Allows a new author to register by providing a unique name and password. The pas
                   "token": "<TOKEN>",
                   "data": null
               }
-          ```
+          
       **Error**
           
               {

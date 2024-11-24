@@ -5,6 +5,7 @@ The Library Management System API provides functionality for user registration, 
 
 
 ## Author Endpoints
+---
 
 **AUTHOR: Register Account**
 

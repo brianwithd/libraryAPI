@@ -21,21 +21,23 @@ Allows a new author to register by providing a unique name and password. The pas
         "username": "janedoe",
         "password": "securepassword123"
     }
-    **Response:**
+```
+
+ **Response:**
       **Success**
-          
+        ```json
               {
                   "status": "success",
                   "token": "<TOKEN>",
                   "data": null
               }
-          
+          ```    
       **Error**
-          
+        ```json  
               {
                   "status": "fail",
                   "data": {
                       "title": "Authentication Failed!"
                   }
               }
-          
+          ```

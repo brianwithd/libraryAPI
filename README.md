@@ -41,6 +41,7 @@ Allows a new author to register by providing a unique name and password. The pas
                   }
               }
           ```
+#
 
 **AUTHOR: Login Account**
 
@@ -77,6 +78,7 @@ Authenticates an author by validating the provided username and password. If val
                   }
               }
           ```
+#
 
 **AUTHOR: Authenticate Account**
 

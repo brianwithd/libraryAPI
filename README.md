@@ -23,8 +23,8 @@ Allows a new author to register by providing a unique name and password. The pas
     }
 ```
 
- **Response:**
-      **Success**
+- **Response:**
+     - **Success**
         ```json
               {
                   "status": "success",
@@ -32,7 +32,7 @@ Allows a new author to register by providing a unique name and password. The pas
                   "data": null
               }
           ```    
-      **Error**
+    -  **Error**
         ```json  
               {
                   "status": "fail",

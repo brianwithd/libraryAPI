@@ -201,7 +201,7 @@ $app = new \Slim\App;
     //author register
     $app->post('/author/register', function (Request $request, Response $response, array $args) {
         $data = json_decode($request->getBody());
-        $name = $data->name;
+        $username = $data->username;
         $pass = $data->password;
         $servername = "localhost";
         $username = "root";
@@ -214,7 +214,7 @@ $app = new \Slim\App;
             
             $checkSql = "SELECT COUNT(*) FROM authors WHERE name = :name";
             $stmt = $conn->prepare($checkSql);
-            $stmt->execute([':name' => $name]);
+            $stmt->execute([':name' => $username]);
             $exists = $stmt->fetchColumn();
     
             if ($exists) {
@@ -223,7 +223,7 @@ $app = new \Slim\App;
                 $sql = "INSERT INTO authors (name, password) VALUES (:name, :password)";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute([
-                    ':name' => $name,
+                    ':username' => $username,
                     ':password' => hash('SHA256', $pass)
                 ]);
                 $response->getBody()->write(json_encode(array("status" => "success", "data" => null)));
@@ -239,7 +239,7 @@ $app = new \Slim\App;
     //author login
     $app->post('/author/login', function (Request $request, Response $response, array $args) {
         $data = json_decode($request->getBody());
-        $name = $data->name;
+        $username = $data->username;
         $pass = $data->password;
         $expire = time();
         $servername = "localhost";
@@ -255,7 +255,7 @@ $app = new \Slim\App;
             $sql = "SELECT * FROM authors WHERE name = :name AND password = :password";
             $stmt = $conn->prepare($sql);
             $stmt->execute([
-                ':name' => $name,
+                ':username' => $username,
                 ':password' => hash('SHA256', $pass)  
             ]);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -271,7 +271,7 @@ $app = new \Slim\App;
                     'use_limit' => 1,  
                     'data' => array(
                         "authorid" => $authorData[0]['authorid'],
-                        "name" => $authorData[0]['name'],
+                        "username" => $authorData[0]['username'],
                     )               
                 ];
     
@@ -306,7 +306,7 @@ $app = new \Slim\App;
     $app->post('/author/auth', function (Request $request, Response $response, array $args) {
         error_reporting(E_ALL);
         $data = json_decode($request->getBody());
-        $name = $data->name;
+        $username = $data->username;
         $pass = $data->password;
         $servername = "localhost";
         $username = "root";
@@ -321,7 +321,7 @@ $app = new \Slim\App;
             $sql = "SELECT * FROM authors WHERE name = :name AND password = :password";
             $stmt = $conn->prepare($sql);
             $stmt->execute([
-                ':name' => $name,
+                ':username' => $username,
                 ':password' => hash('SHA256', $pass)
             ]);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -337,7 +337,7 @@ $app = new \Slim\App;
                     'use_limit' => 1, 
                     'data' => array(
                         "authorid" => $data[0]['authorid'],
-                        "name" => $data[0]['name'],
+                        "username" => $data[0]['username'],
                     )
                 ];
     
@@ -691,7 +691,7 @@ $app = new \Slim\App;
             $insertBlacklistStmt = $conn->prepare($blacklistTokenSql);
             $insertBlacklistStmt->execute(['token' => $token]);
     
-            $sql = "SELECT b.bookid, b.title, a.name AS author_name 
+            $sql = "SELECT b.bookid, b.title, a.username AS author_name 
                     FROM books b 
                     JOIN books_authors ba ON b.bookid = ba.bookid 
                     JOIN authors a ON ba.authorid = a.authorid

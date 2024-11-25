@@ -9,6 +9,25 @@ The Library Management System API provides functionality for user registration, 
 1. [Features](#features) 
 2. [Technology Used](#technology-used)
 3. [Setting up the Database](#setting-up-the-database)
+4. [Author Endpoints](#author-endpoints)
+   - [Login Account](#login-account)
+   - [Authenticate Account](#authenticate-account)
+   - [Create Book](#create-book)
+   - [Edit Book](#edit-book)
+   - [Delete Book](#delete-book)
+   - [View Book](#view-book)
+5. [Admin Endpoints](#admin-endpoints)
+   - [Register Account](#register-account-admin)
+   - [Login Account](#login-account-admin)
+   - [Authenticate Account](#authenticate-account-admin)
+   - [View All Users and Authors](#view-all-users-and-authors)
+   - [Delete User or Author](#delete-user-or-author)
+6. [User Endpoints](#user-endpoints)
+   - [Register Account](#register-account-user)
+   - [Login Account](#login-account-user)
+   - [Authenticate Account](#authenticate-account-user)
+   - [View All Books](#view-all-books)
+
 
 ## Features
 
@@ -729,7 +748,7 @@ Authenticates a user using their username and password. On success, issues a JWT
 
 #
 
-#### *View Account*
+#### *View All Books*
 
 Endpoint: `/user/viewBooks`
 

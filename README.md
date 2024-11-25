@@ -10,22 +10,23 @@ The Library Management System API provides functionality for user registration, 
 2. [Technology Used](#technology-used)
 3. [Setting up the Database](#setting-up-the-database)
 4. [Author Endpoints](#author-endpoints)
-   - [Login Account](#login-account)
-   - [Authenticate Account](#authenticate-account)
+   - [Author Register Account](#register-account)
+   - [Author Login Account](#login-account)
+   - [Author Authenticate Account](#authenticate-account)
    - [Create Book](#create-book)
    - [Edit Book](#edit-book)
    - [Delete Book](#delete-book)
    - [View Book](#view-book)
-5. [Admin Endpoints](#admin-endpoints)
-   - [Register Account](#register-account)
-   - [Login Account](#login-account)
-   - [Authenticate Account](#authenticate-account)
+6. [Admin Endpoints](#admin-endpoints)
+   - [Admin Register Account](#register-account)
+   - [Admin Login Account](#login-account)
+   - [Admin Authenticate Account](#authenticate-account)
    - [View All Users and Authors](#view-all-users-and-authors)
    - [Delete User or Author](#delete-user-or-author)
-6. [User Endpoints](#user-endpoints)
-   - [Register Account](#register-account)
-   - [Login Account](#login-account)
-   - [Authenticate Account](#authenticate-account)
+7. [User Endpoints](#user-endpoints)
+   - [User Register Account](#register-account)
+   - [User Login Account](#login-account)
+   - [User Authenticate Account](#authenticate-account)
    - [View All Books](#view-all-books)
 
 
@@ -71,7 +72,7 @@ To set up the MySQL database for the application, follow these steps:
 ---
 ## **Author Endpoints**
 
-#### *Register Account*
+#### *Author Register Account*
 
 Endpoint: `/author/register`
 
@@ -107,7 +108,7 @@ Allows a new author to register by providing a unique name and password. The pas
           ```
 #
 
-#### *Login Account*
+#### *Author Login Account*
 
 Endpoint: `/author/login`
 
@@ -142,7 +143,7 @@ Authenticates an author by validating the provided username and password. If val
           ```
 #
 
-#### *Authenticate Account*
+#### *Author Authenticate Account*
 
 Endpoint: `/author/auth`
 
@@ -409,7 +410,7 @@ Authorization: Requires a valid JWT in the `Authorization` header or `admin_toke
 ---
 ## **Admin Endpoints**
 
-#### *Register Account*
+#### *Admin Register Account*
 
 Endpoint: `/admin/register`
 
@@ -443,7 +444,7 @@ Allows a new admin to register by providing a unique username and password. The 
           ```
 #
 
-#### *Login Account*
+#### *Admin Login Account*
 
 Endpoint: `/admin/login`
 
@@ -478,7 +479,7 @@ Allows an admin to log in by providing valid credentials (username and password)
           ```
 #
 
-#### *Authenticate Account*
+#### *Admin Authenticate Account*
 
 Endpoint: `/admin/auth`
 
@@ -642,7 +643,7 @@ Authorization: Requires a valid JWT in the `Authorization` header or `admin_toke
 ---
 ## **User Endpoints**
 
-#### *Register Account*
+#### *User Register Account*
 
 Endpoint: `/user/register`
 
@@ -676,7 +677,7 @@ Registers a new user in the system. Checks for existing usernames before adding 
           ```
 #
 
-#### *Login Account*
+#### *User Login Account*
 
 Endpoint: `/user/login`
 
@@ -710,7 +711,7 @@ Authenticates a user by checking their credentials. On successful login, generat
           ```
 #
 
-#### *Authenticate Account*
+#### *User Authenticate Account*
 
 Endpoint: `/user/auth`
 
